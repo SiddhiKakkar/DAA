@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int jumpsearch(int A[],int key,int n){
+    int m = sqrt(n);
+    int i=0,k;
+    while(A[m]<=key && m<n){
+        i=m;
+        m=m+sqrt(n);
+        if(m>n-1)
+            m=n;    
+    }
+    for(k=i;k<m;k++){
+        if(A[k]==key)
+            return k;
+    }
+}
+int main(){
+    int n,key;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    cin>>key;
+    if(jumpsearch(arr,key,n)==-1){
+        cout<<"Key not found"<<endl;
+    }
+    else{
+        cout<<"Key found at index "<<jumpsearch(arr,key,n)<<endl;
+    }
+}
