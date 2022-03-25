@@ -1,4 +1,4 @@
-// ITERATIVE 
+// ........................ITERATIVE METHOD..........................
 #include<iostream>
 using namespace std;
 int binarysearch(int arr[],int s,int e,int target){
@@ -30,7 +30,7 @@ int main(){
         cout<<"Element found at index "<<result<<endl;
 }
 
-// RECURSIVE
+// .............................RECURSIVE METHOD..................................
 #include<iostream>
 using namespace std;
 int binarysearch(int arr[],int s,int e,int target){
