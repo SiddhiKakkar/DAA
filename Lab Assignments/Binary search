@@ -1,1 +1,63 @@
+// ITERATIVE 
+#include<iostream>
+using namespace std;
+int binarysearch(int arr[],int s,int e,int target){
+    int mid;
+    while(s<=e){
+        mid=s+(e-s)/2;
+        if(arr[mid]==target)
+            return mid;
+        else if(arr[mid]<target)
+            s=mid+1;
+        else
+            e=mid-1;            
+    }
+    return -1;
+}
+int main(){
+    int n,target;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    cin>>target;
+    int start=0,end=n-1;
+    int result=binarysearch(arr,start,end,target);
+    if(result==-1)
+        cout<<"Element not found"<<endl;
+    else
+        cout<<"Element found at index "<<result<<endl;
+}
 
+// RECURSIVE
+#include<iostream>
+using namespace std;
+int binarysearch(int arr[],int s,int e,int target){
+    int mid;
+    if(s<=e){
+        mid=s+(e-s)/2;
+    if(arr[mid]==target)
+        return mid;
+    else if(arr[mid]<target)
+        return binarysearch(arr,mid+1,e,target);
+    else
+        return binarysearch(arr,s,mid-1,target);            
+    }
+    return -1;
+}
+int main(){
+    int n,target;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    cin>>target;
+    int start=0,end=n-1;
+    int result=binarysearch(arr,start,end,target);
+    if(result==-1)
+        cout<<"Element not found"<<endl;
+    else
+        cout<<"Element found at index "<<result<<endl;
+}
