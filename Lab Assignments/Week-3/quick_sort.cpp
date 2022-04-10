@@ -1,29 +1,23 @@
 #include<iostream>
 using namespace std;
-void SelectionSort(int arr[],int n){
-    int i,j,pos,min=0,comp=0,swaps=0;
-    for (int i = 0; i < n-1; i++){
-        min = arr[i];
-        pos = i;
-        for (int j = i+1; j < n; j++){
-            comp++;
-            if(min>arr[j]){
-                min=arr[j];
-                pos=j;
-            }
-        }
-        if(pos!=i){
-            arr[pos]=arr[i];
-            arr[i]=min;
-            swaps++;
+int partion(int arr[],int low,int high){
+    int i=low-1;
+    int pivot=arr[high];
+    for (int j = low; j < high; j++){
+        if(arr[j]<=pivot){
+            i++;
+            swap(arr[i],arr[j]);
         }
     }
-    for (int i = 0; i < n; i++){
-        cout<<arr[i]<<" ";
+    swap(arr[i+1],arr[high]);
+    return i+1;
+}
+void QuickSort(int arr[],int low,int high){
+    if(low<high){
+        int p = partion(arr,low,high);
+        QuickSort(arr,low,p-1);
+        QuickSort(arr,p+1,high);
     }
-    cout<<endl;
-    cout<<"Comparisons: "<<comp<<endl;
-    cout<<"Swaps: "<<swaps<<endl;
 }
 int main(){
     int T;
@@ -35,6 +29,17 @@ int main(){
         for (int i = 0; i < n; i++){
             cin>>arr[i];
         }
-        SelectionSort(arr,n);
+        QuickSort(arr,0,n-1);
+        int flag=0;
+        for(int i=0;i<n-1;i++){
+            if(arr[i]==arr[i+1]){
+                flag=1;
+                break;
+            }
+        }
+        if(flag==1)
+            cout<<"Yes"<<endl;
+        else    
+            cout<<"No"<<endl;
     }
 }
